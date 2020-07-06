@@ -125,6 +125,8 @@ def list2Dictionary():
             csv_writer = csv.DictWriter(new_file, fieldnames= fieldNames, lineterminator = '\n')
             csv_writer.writeheader()
             # these for loops create 
+            
+            #categories = ['p_name','p_pts','p_reb','p_ast']
             for game in listOfGames:
                 entry['date']= game[0]
                 entry['matchup']= game[1]
