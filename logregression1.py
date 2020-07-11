@@ -85,11 +85,11 @@ def getMatrix():
         count+=1
    
     
-    trainRAInputFeatures = np.array(rollingAverages(trainInputFeatures), dtype=np.float16)
-    matrices.append(trainRAInputFeatures)
+    #trainRAInputFeatures = np.array(rollingAverages(trainInputFeatures), dtype=np.float16)
+    #matrices.append(trainRAInputFeatures)
     
-    #trainNRAInputFeatures = np.array(trainInputFeatures)
-    #matrices.append(trainNRAInputFeatures)
+    trainNRAInputFeatures = np.array(trainInputFeatures)
+    matrices.append(trainNRAInputFeatures)
     
     resultsVector = np.array(trainResults, dtype=np.float16)
     matrices.append(resultsVector)
@@ -201,14 +201,14 @@ def costFn(Theta,X,Y):
 """
 def testTheta(Theta,testX,testY):
     guesses = hypothesis(testX,Theta)
-    print(guesses)
+    #print(guesses)
     tright=0
     twrong=0
     
     for i in range(223):
-        if guesses[i] <= .33:
+        if guesses[i] <= .5:
             guesses[i] =0
-        if guesses[i]> .33:
+        if guesses[i]> .5:
             guesses[i] =1
             
     for i in range(223):
@@ -221,8 +221,8 @@ def testTheta(Theta,testX,testY):
     for i in range(223):
         if testY[i]==1:
             wCount +=1
-    print(testY)
-    print(guesses)
+    #print(testY)
+    #print(guesses)
     percRight  = tright/(tright+twrong)
     print('percentage of right guesses: ', percRight)
             
