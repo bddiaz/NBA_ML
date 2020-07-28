@@ -4,14 +4,14 @@ This file will create a numpy implementation of a deep neural network.
 
 """
 
-import numpy
+
 import csv
 
 def getMatrices():
     Total=[]
-    features =['season_id','homeTeamID','homeTeamFGM','homeTeamFGA',
+    features =['homeTeamFGM','homeTeamFGA',
                'homeTeamFG3M','homeTeamFG3A','homeTeamPTS','homeTeamREB','homeTeamAST','homeTeamTOV',
-               'awayTeamID','awayTeamFGM','awayTeamFGA',
+               'awayTeamFGM','awayTeamFGA',
                'awayTeamFG3M','awayTeamFG3A','awayTeamPTS','awayTeamREB','awayTeamAST','awayTeamTOV',
                'p1_ID','p1_pts','p1_reb','p1_ast','p1_fga','p1_fgm','p1_to','p1_plusminus',
                'p2_ID','p2_pts','p2_reb','p2_ast','p2_fga','p2_fgm','p2_to','p2_plusminus',
@@ -128,27 +128,38 @@ def getMatrices():
         if trainNum >0:
             trainX.append(game[2:10] + game[11:])
             trainNum -=1
+    
+    ''''
     with open('trainData.csv','w') as newfile:
         csv_writer = csv.writer(newfile, lineterminator = '\n')
         for data in trainX:
             csv_writer.writerow(data)
     trainNum = 6000
     
+    '''
     for game in Total[::-1]:
-        if trainNum>0:
-            if game[5] > game[13]:
-                trainY.append(1)
-            else:
-                trainY.append(0)
-            trainNum-= 1
-            
-            
-            
+        
+        if int(game[6]) > int(game[15]):
+            trainY.append(1)
+        else:
+            trainY.append(0)
+
+
+    
+    with open('dataResults.csv','w') as anotherFile:
+        csv_writer = csv.writer(anotherFile, lineterminator = '\n')
+        
+        for result in trainY:
+            temp =[result]
+            csv_writer.writerow(temp)
+    
     preset =[]      
     for i in range(0,3509)[::-1]:
         preset.append(Total[i])
+        
     
-    
+
+    """
     
     with open('teamSeasonData.csv','r') as teamdata:
         csv_reader = csv.reader(teamdata)
@@ -526,12 +537,13 @@ def getMatrices():
                     awayPlayerData.append(atemp)
                     atemp =[]
                     acount =0
-                    
+    
 
         finalTestData =[]
         for j in range(len(awayTeamData)):
             new = homeTeamData[j]+awayTeamData[j] + homePlayerData[j]+ awayPlayerData[j]
             finalTestData.append(new)
+    """
     """
     with open('testData.csv','w') as new_file:
         csv_writer = csv.writer(new_file, lineterminator ='\n')
