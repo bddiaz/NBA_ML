@@ -36,7 +36,7 @@ def getMatrix():
     temp =[]    
     matrices =[]
     
-    with open('semifinaldataset.csv','r') as csv_file:
+    with open('Datasets/semifinaldataset.csv','r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         # get all input features and results in large lists to then
         # be used to make numpy arrays
@@ -162,6 +162,7 @@ def sigmoid(x):
     given the current thetas and training examples. 
 """
 def hypothesis(X, Theta):
+    print(sigmoid(np.dot(Theta.transpose(),X)))
     return sigmoid(np.dot(Theta.transpose(),X))
 
 
@@ -180,7 +181,7 @@ def gradientDescent(Theta, X, Y, alpha):
         dTheta = np.dot(X, dif)
         Theta = Theta - (alpha/409)*dTheta
         
-        
+    print(hypothesis(X,Theta))   
     return Theta
     
         
@@ -191,6 +192,7 @@ def gradientDescent(Theta, X, Y, alpha):
     which uses hypothesis and current theta to tell us the given cost
 """
 def costFn(Theta,X,Y):
+    print(hypothesis(X,Theta))
     cost = (1/409)*(-1*np.dot(Y,np.log10(hypothesis(X,Theta))) - np.dot((1-Y),np.log10(1-hypothesis(X,Theta))))
     return cost
     
@@ -250,7 +252,7 @@ def mainAlgorithm():
     costFn(Theta,X,Y)
     newTheta = gradientDescent(Theta,X,Y,alpha)
 
-    testTheta(newTheta, testX,testY )
+    #testTheta(newTheta, testX,testY )
     
 
 mainAlgorithm()
