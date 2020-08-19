@@ -6,26 +6,18 @@ Here I both used an api to receive game data alongside an already made dataset f
 I will implement at least 2 algorithms, the first of a smaller scale and the second much larger: logistic regression and a neural network.
 
 
-DEEP NEURAL NETWORK:
+DEEP NEURAL NETWORK:   .
 I have implemented a deep, 4-layer neural network which returns the probability of a home team winning a particular game against another team. 
 
-Train data: 
+TRAIN DATA: 
 I trained on 6000 NBA games, starting at the beginning of the 2012-2013 season and up until sometime in the middle of the 2016 season. One traning example had 100 features. These features included all the game data that I thought would be relevant. The features I chose for one training example included the performances (points, reb, ast, tov, plusminus) of the top six players of both teams. In addition, one training example also included the team season average for the respective seasons (such as average points, average rebounds, average assists, average tov) for both teams. I normalized this data to speed up traning and to calculate the cost more easily after each epoch of traning. After 10,000 epochs, my cost had convereged and I tested on my test data.
 
-Test data:
+TEST DATA:
 My test data included all remaining NBA games starting where the last train example left off (in the 2016 season) up until the 2019 season (until the last game before the NBA bubble). This resulted in a total of 3509 games.
 Instead of testing on the performances of those players (since in real life we dont know how a player will actually perform), I instead changed my test data so that instead of using the statistics for a game already played, I used the season average for the top six players for both teams (i.e. avg pts, avg ast, avg reb, avg tov, avg plusminus). This is more useful and intesting because in real life, we dont know how a player will perform, so often we base our predictions on how the player has generally been performing during the season. Since the team based features were already averages for the season, those features were kept the same. Again, I also normalized this data. 
 
-NN results/Obseravations:
-Out of the 3509 games tested, I consistenly kept predicting about 68% of the games winnner correctly. This performed much better than the logistic regression algorithm and works for any nba team or game. I believe that the high number of features were very useful as the algorithm uses a pretty full glance of both teams to make a prediction. Additionally, there is no specific feature that immediate shows who the winner is (like the total points scored at the end of the game, or all the points scored by all players of a team, since there are 15 on each team and I only chose the top 6). 
-Overall trends are not able to be explicitely captured like it was for the regression algorithm, but nonetheless, this algorithm is much more powerful and more accurate than the other. 
 
-Based on some research, the accuracy I have achieved is considerably good, and my attempt stands out amongs the other for the features I used. Many other attemps are much more limited in features, where I tried to include as many relevant ones (based from my personal experience as a basketball fan). 
-
-Next steps:
-I would like to continue to work with this dataset I have created in order to implement a more sophisticated neural network such as a RNN. However, I do not know how big of an improvement I'd see as ~70% seems to be as good as these algorithms get for sports based on the research I did. Nonetheless, it is worth a try.
-
-Features: 
+FEATURES:  
 Here are all the features used in this algorithm:
 
 'homeTeamFGM','homeTeamFGA', 'homeTeamFG3M','homeTeamFG3A','homeTeamPTS','homeTeamREB','homeTeamAST','homeTeamTOV',
@@ -42,6 +34,15 @@ Here are all the features used in this algorithm:
 'op4_pts','op4_reb','op4_ast','op4_fga','op4_fgm','op4_to','op4_plusminus',
 'op5_pts','op5_reb','op5_ast','op5_fga','op5_fgm','op5_to','op5_plusminus',
 'op6_pts','op6_reb','op6_ast','op6_fga','op6_fgm','op6_to','op6_plusminus'
+
+NN RESULTS/OBSERVATIONS:
+Out of the 3509 games tested, I consistenly kept predicting about 68% of the games winnner correctly. This performed much better than the logistic regression algorithm and works for any nba team or game. I believe that the high number of features were very useful as the algorithm uses a pretty full glance of both teams to make a prediction. Additionally, there is no specific feature that immediate shows who the winner is (like the total points scored at the end of the game, or all the points scored by all players of a team, since there are 15 on each team and I only chose the top 6). 
+Overall trends are not able to be explicitely captured like it was for the regression algorithm, but nonetheless, this algorithm is much more powerful and more accurate than the other. 
+
+Based on some research, the accuracy I have achieved is considerably good, and my attempt stands out amongs the other for the features I used. Many other attemps are much more limited in features, where I tried to include as many relevant ones (based from my personal experience as a basketball fan). 
+
+NEXT STEPS:
+I would like to continue to work with this dataset I have created in order to implement a more sophisticated neural network such as a RNN. However, I do not know how big of an improvement I'd see as ~70% seems to be as good as these algorithms get for sports based on the research I did. Nonetheless, it is worth a try.
 
 
 
